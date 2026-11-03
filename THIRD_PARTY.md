@@ -1,31 +1,33 @@
 # Dependencies, licensing and sound origins
 
-## Application and sounds
+## Product, library patterns and preview sounds
 
-Project-specific music generation, MIDI writing, scheduling, UI, state management and eight preview synthesis algorithms were created for this project. No artist recording, existing song MIDI, sample pack or commercial preset library is embedded. All preview sounds use original oscillator/envelope formulas: soft piano-like additive decay, electric-piano-like FM, nylon-like harmonic pluck, short muted pluck, inharmonic FM bell, bright pluck, slow sine pad and sine sub bass. Names describe approximations; they are not claims of realistic multisampled acoustic instruments. The generator is procedural, with no AI-model integration.
+Ghost Note by TwonOnDaBeat contains project-specific procedural music generation, MIDI writing, scheduling, interface and state code. It operates offline without an AI-model service.
 
-No public license is granted to project-specific source by the private development package. The owner should choose the final proprietary license/EULA and legal identity before public distribution. Third-party licenses remain separate.
+The library-informed profile contains bounded aggregate statistics derived from accepted pitched material in the owner's collection. No original library MIDI files, full source phrases, recordings, samples or commercial preset banks are embedded or redistributed. Review lists and original source files remain separate. **LIBRARY-METHOD.md** describes classification, duplicate handling, weak genre hints and the limits of those statistics. Aggregate guidance and repeat checks do not guarantee that a phrase is globally unique.
+
+The eight preview voices use original oscillator/envelope formulas: soft piano-like additive decay, electric-piano-like FM, nylon-like harmonic pluck, short muted pluck, inharmonic FM bell, bright pluck, slow sine pad and sine sub bass. Their names describe synthesized approximations, not realistic multisampled acoustic instruments. Exported MIDI contains no preview audio; receiving instruments determine final tone and glide.
+
+Project-specific source remains private and no open-source license is granted to it by the binary download. Third-party notices have their own terms. **TwonOnDaBeat** is the product/publisher credit requested by the owner; this document does not certify brand-name availability.
 
 ## JUCE
 
-Pinned framework: **JUCE 8.0.16-security**, commit `ea77444750de45e036e0279bb0291144bf8e3688`. The exact framework license is retained with the package. Source: [official JUCE repository](https://github.com/juce-framework/JUCE).
+The framework is **JUCE 8.0.16-security**, pinned commit `ea77444750de45e036e0279bb0291144bf8e3688`, from the [official JUCE repository](https://github.com/juce-framework/JUCE). Its exact bundled license is included as JUCE-LICENSE.md. Closed-source distribution requires the applicable JUCE license and continuing eligibility under the [official JUCE 8 terms](https://juce.com/legal/juce-8-licence/).
 
-JUCE licensing was checked against the [current official JUCE 8 EULA](https://juce.com/legal/juce-8-licence/) during this development session. It offers Starter, Indie, Pro and Educational tiers; commercial eligibility depends on the owner's revenue/funding and required contributor seats. Starter currently has a $20,000 annual revenue/funding limit; Indie $300,000; Pro no limit. Educational is restricted to qualifying educational/research use. Do not infer the owner qualifies for a particular tier. Before closed-source public distribution, the owner must establish the applicable license, seats and distribution rights under those terms, or obtain an appropriate alternative license. The session does not purchase, assign or certify the owner's JUCE license.
+During this development session, the owner confirmed: **“I use or qualify for JUCE Starter (within its revenue/funding limit).”** This is owner-provided confirmation, not an independent licensing audit, license purchase or certification. The owner remains responsible for continuing eligibility, any required contributor seats and compliance. The version pin supports reproducibility; it does not guarantee absence of dependency defects.
 
-On 1 November 2026, the owner confirmed: **“I use or qualify for JUCE Starter (within its revenue/funding limit).”** This is an owner-provided confirmation for the planned closed-source release, not an independent audit, license purchase or certification by the development agent. The owner remains responsible for continuing eligibility, applicable contributor seats, and compliance with the official terms.
+## VST3 and installer
 
-The version pin is a reproducibility measure, not a guarantee that dependencies have no security defects. Review upstream security updates before release.
+The exact VST3 SDK bundled with the pinned JUCE tree uses the MIT license, retained as VST3-SDK-LICENSE.txt. [Steinberg's VST SDK information](https://www.steinberg.net/developers/vstsdk/) describes its licensing. Steinberg marks/logos have separate usage rules; this build adds no Steinberg logo.
 
-## VST3
+The offline EXE installer is built using NSIS 3.12. Its notice accompanies the installer. Build tools and compiler packages are development dependencies and are excluded from application downloads. Windows system libraries and compiler runtimes retain their own terms.
 
-The exact VST3 SDK bundled in the pinned JUCE tree uses the MIT license; its license text must accompany distribution. [Steinberg's current VST SDK page](https://www.steinberg.net/developers/vstsdk/) states VST technology is available under MIT and does not require disclosure of product source. Steinberg trademarks and optional logos have separate usage rules; this build does not add a Steinberg logo.
+## Other notices and scale facts
 
-## Other framework notices
+Applicable JUCE module notices are retained in the package's `third-party-licenses` folder, including zlib, libpng, libjpeg, HarfBuzz and SheenBidi. Build options disable ASIO, browser integration, curl and optional FLAC/Ogg/MP3 decoding. Recheck the compiled dependency inventory before distribution.
 
-JUCE includes third-party code and notices in its modules. The binary package retains applicable notice files in its third-party-licenses folder. Build options disable ASIO, web browser integration, curl, FLAC, Ogg/Vorbis and MP3 decoding. Review the compiled dependency inventory and all applicable notices before public release.
-
-Windows system libraries and compiler runtimes have their own applicable terms. Portable build tools are development dependencies; they are not part of the runtime sound palette and should not be uploaded with public application downloads. See BUILD.md for exact tools and provenance.
+The scale catalog records numeric pitch-class formulas audited from installed FL Studio reference scores, plus standard Chromatic. No proprietary FSC score file, Image-Line logo or vendor interface artwork is bundled. Named scale traditions can have multiple variants; these formulas follow the audited installation. Cymatics and Unison tools served as workflow references; their code, interface assets and sound libraries are not included.
 
 ## Original visual artwork
 
-The ink-and-copper sonic-sculpture artwork was generated specifically for this project with the built-in image_gen tool and embedded as an application resource. No external reference image, stock-photo license or artist asset was used. See ARTWORK.md for the full final prompt and saved source-asset path. Do not claim that generated artwork has been trademark cleared or that a final product brand has been selected.
+The new manuscript-paper ghost artwork was generated specifically for this project with the built-in image generation tool and no external reference. See ARTWORK.md and GHOST-NOTE-ARTWORK.md for the saved asset, final prompt and provenance. Generated artwork and naming checks do not establish exclusive trademark rights.

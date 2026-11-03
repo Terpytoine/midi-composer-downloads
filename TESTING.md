@@ -1,65 +1,61 @@
-# Implementation and testing report
+# Ghost Note implementation and testing report
 
-Windows x64 development milestone, 1 November 2026. This report distinguishes working code and checks from tests that were not performed. It is not a production-readiness or security certification.
+**Ghost Note by TwonOnDaBeat — v0.2.0-dev, Windows x64.** This report separates implemented behavior, recorded evidence and remaining checks. It is not a production-readiness or security certification.
 
-## Implemented
+## Final artifact evidence
 
-The C++17 engine is linked into the Windows VST3. The owner's latest instruction sets the final scope to **VST3 only**. It provides six procedural style profiles, diatonic harmony with automatic inversions and voice leading, five related part roles, half/normal/double-time phrasing, independent musical controls, seeded regeneration, selected-bar regeneration, exact lock preservation, and portable Type 1 MIDI writing.
+The final extended-scale VST3 passed the complete build and acceptance run. The record below refers to that exact artifact; installer and host outcomes are identified separately.
 
-The JUCE interface implements recoverable A/B candidates, Keep/Discard, project-scoped generation history and favorites, undo/redo, per-part enable/lock/mute/solo/channel/sound/level, optional Add Part controls, and an actual piano roll with note creation/deletion/movement/resizing, multiple selection, velocity, straight/triplet snapping, scale keys, scrolling and zoom. Project and plugin state retain exact accepted notes and a pending candidate. Settings are staged into candidates. No actual AI model is integrated.
+| Check | Final v0.2 result |
+|---|---|
+| Engine and MIDI acceptance | 3,932,337 passed |
+| Processor/state/transport acceptance | 3,354 passed |
+| Interface workflow/labels/layout | 1,406 passed |
+| CTest suites and elapsed time | 3/3 suites passed in 8.03 seconds |
+| Independent pluginval level 5 | SUCCESS (strictness 5; GUI lifecycle enabled) |
+| Final VST3 binary SHA-256 | d1861a10b020147da90e215918461428a27a4cd5c1e6096a4148c8bc9a631b9c |
+| Installer extraction and payload hashes | See the separate final installer verification record. |
+| Actual Windows installation | Not performed during packaging; installed-copy verification is a separate follow-up. |
+| FL Studio loading, drag, multitrack import and live routing | Not yet verified for this build. |
 
-The compact default is **1000 × 720**, with a **920 × 620** minimum and drag enlargement. Auto beat scale reads the current tempo and recommends half-time at 140 BPM or above, double-time below 70 BPM, otherwise normal. Manual choices override the guess. Tempo changes do not regenerate accepted MIDI. At 180 BPM, both a 180 BPM feel at 1× and a 90 BPM feel at ½× span **32 quarter-note beats / eight host bars / 10.6667 seconds**. The separate note-editing grid defaults to ½ beat.
+Earlier v0.1 test counts and hashes do not establish a pass for this redesigned v0.2 artifact. Private validation logs retain the development history.
 
-Eight original oscillator/envelope preview sounds provide audition audio. They are honestly labeled synthesized approximations; acoustic realism has not been established by listening tests. MIDI files contain no preview audio or receiving-instrument glide data.
+## Implemented behavior
 
-## Acceptance evidence
+The offline C++17 engine and JUCE VST3 share the arrangement used by preview playback, editing, state and MIDI export. The main workflow is **Genre → Key/Scale → Tempo → Complexity → Print**. Melody, Chords, Countermelody and Bass start enabled and follow one harmonic timeline. A legacy complementary chord layer remains available in advanced controls.
 
-| Requirement | Actual evidence |
-| --- | --- |
-| Eight bars at 177 BPM with half-time feel | Engine tests retain 32 beats and 10.8474576 seconds; slower motif, chord and bass pacing tested separately from density. Actual stereo WAV contains 520,678 frames at 48 kHz, approximately 10.84746 seconds. |
-| 180 BPM normal or 90 BPM half feel, same loop | Processor tests exercise manual 1× and ½× and Auto suggestions, preserving 32 beats / 10.6667 seconds. |
-| Regenerate countermelody without altering locked bass/melody | Tests compare note pitches, starts, durations and velocities exactly, including deliberate unusual manual edits. |
-| Candidate audition/discard recovers current | Real processor tests exercise A/B, generation, rejection of a second unresolved candidate, Keep/Discard, undo/redo, and manual A edits while B exists. |
-| Counter chords follow main harmony | Scale/chord membership, upper register and restrained velocities tested across all roots/styles/feels. |
-| Strict Scale generation and editing | All 12 roots, major/minor, styles and feels tested; actual edit API snaps pitch and preserves valid MIDI range. |
-| Editor data, playback and export agree | Real edited arrangement feeds schedule and exporter. Live pitch, velocity, onset and duration compared against authoritative notes to one sample; exported MIDI compared with engine bytes. MIDI file timing rounds to 960 PPQ. |
-| State and projects restore | Actual project JSON and asynchronous plugin-state callbacks restore current/candidate notes, flags, sounds and preferences; malformed, nested, oversized and out-of-range projects rejected. |
-| Host transport robustness | Simulated host tests cover starts/stops, looping, seeking, negative preroll, extreme finite positions, tempo changes and candidate switches without unmatched active notes. |
-| VST3 can load and process | Independent pluginval level 5 checks pass, including editor lifecycle and processing. This is not an FL Studio test. |
-| Product format | Final build and delivery target VST3 only. Earlier development built a standalone app, but the owner removed it from scope; no standalone app is included in the download. |
-| FL Studio loading, MIDI drag, multitrack import and live routing | **Not tested.** FL Studio 2025 launched, but no plugin search path was added and no plugin was installed/scanned. The owner explicitly chose to keep FL Studio search settings unchanged. |
+There are 24 genre rule profiles with different progressions, phrasing, bass attacks, chord articulation, register and harmonic pacing. The library contributes bounded aggregate onset, duration, interval, chord-voicing-gap and reliable chord-transition statistics. Genre names inferred from source folders are weak hints. Voice leading and shared harmony coordinate the parts, with a restrained corpus-derived chord-spacing preference. Five observed cross-role source pairs are not presented as a trained arrangement model. See LIBRARY-METHOD.md.
 
-The final musical-variety build passed all three automated suites: **97,770 engine/MIDI**, **2,554 processor**, and **857 UI label/layout assertions**, in a recorded 1.96 seconds. Independent pluginval level 5 also completed with **SUCCESS**, including editor lifecycle checks, on this updated VST3. The plugin binary SHA-256 is `08f1d201ad024df77629a06e32b06318dae87cb7db0f2f579f89b75092e967ef`. Build versions and validation details are recorded in **BUILD_VALIDATION.md**. Raw logs are retained only with private source. **UI_VALIDATION.md** documents the actual component renders and label checks; these do not simulate a running FL Studio window.
+The selected-scale catalog contains the 37 formulas audited from installed FL Studio 2025/2026 reference scores plus Chromatic, transposed through all 12 roots. Strict Scale constrains generation and edited pitches. Scale names, highlighting, chord notes, persistence and MIDI scale text must agree. There is no verified claim of complete Cymatics MIDI Printer Pro/MAX scale parity. This is twelve-tone equal-tempered MIDI, not a microtuning engine.
 
-## Reported dropdown defect and visual revision
+Print keeps the committed A arrangement intact. B can be auditioned, kept or discarded. Printing again archives the previous B in Ideas before replacing it. Part regeneration, exact locks, small variations, selected bars and rhythm/pitch-preserving modes remain available. Explicit seeds reproduce settings and statistical-profile snapshots. Recent-pattern memory persists with projects; bounded repeat avoidance is best effort.
 
-The owner reported corrupted words/symbols in dropdowns and an unfinished visual appearance. The original MSVC compile command lacked an explicit UTF-8 source/execution setting, and narrow text entered JUCE through an ASCII conversion. The revised build adds `/utf-8`, explicit UTF-8 conversion for Unicode labels, custom readable combo and popup rendering, and checks of exact item text and Unicode code points. The initial UI regression run caught the remaining incorrect conversion after the compiler setting alone was changed. Original artwork is embedded in the revised instrument; its prompt and built-in generation provenance are in ARTWORK.md. These changes preserve the music engine and compact resizable workflow.
+The actual piano roll supports note add/delete, move/resize, multi-selection, velocity, strict-scale snapping, straight/triplet grids, zoom and scroll. Per-part enable, lock, mute, solo, channel, sound and gain are distinct controls. MIDI can be dragged or exported individually, or written as a Type 1 multitrack arrangement. Projects retain exact note edits and a pending candidate. The program validates bounded project size, note ranges, timing and malformed state data.
 
-## Limits and remaining work
+## Timing and compact interface
 
-- No completed FL Studio integration claim: file dragging, multitrack import, live routing, host project reopening and wrapper behavior still require separate host tests. Setup instructions describe the documented host routes, not verified outcomes for this build.
-- No full manual piano-roll usability session, physical-device listening review or broad Windows display-scaling matrix was completed. Offscreen renders and pluginval editor checks cover narrower conditions.
-- History/favorites are scoped to each project and capped at 24 entries each; undo/redo retains 40 session snapshots. There is no cloud library or automatic disk backup. Save a composition project or FL Studio project explicitly.
-- Key help ranks generated ranges as a starting-point heuristic. It is not a vocal-performance analysis and does not automatically rewrite the lead into a supplied vocal range.
-- Major/natural minor are implemented; additional advanced scales, drums, textures, audio rendering/export controls and host-automatable composition parameters are not included in this milestone. The demo WAV is a validation render from actual synthesis, not an application audio-export feature.
-- Preview voices have no sample library, detailed acoustic modeling, per-note slide messages or user sound import. FL Studio supplies the audio device; the plugin does not select a separate audio driver.
-- Playback/export use enabled parts. Mute and Solo affect audition/live output; MIDI export intentionally includes enabled muted parts. Choose distinct MIDI channels for independent parts; ambiguous overlapping same-pitch events on a shared channel are rejected with an explanation.
-- Project files are limited to 8 MB and 4096 notes per part. The app exports MIDI; it does not parse arbitrary MIDI imports. No hostile-input fuzzing campaign or external penetration test was performed.
-- Runtime code contains no account, telemetry, remote-control feature, downloader or application network listener. This is source/design inspection, not a guarantee that software is invulnerable. Review dependencies and licenses before distribution.
-- Builds are unsigned. No certificate was available. Checksums accompany the artifacts, and signing instructions are provided for an authorized certificate holder.
-- GitHub repositories **Terpytoine/midi-composer-source** (Private) and **Terpytoine/midi-composer-downloads** (Public) were created. The public repository has release immutability enabled and its collaborator page reports zero collaborators and that only the owner can contribute. Source backup upload, draft release assets, final publication and remote-download verification are separate steps; repository existence alone does not establish a verified backup. Source is retained privately as a complete archive, not as a public source tree. The owner confirmed use of or eligibility for JUCE Starter within its revenue/funding limit; this is self-reported rather than independently certified.
-- A final product brand remains unselected. The neutral development label continues; naming ideas are unverified.
+Default size is **920 × 650**, minimum **880 × 600**, with drag enlargement. Four output rows have real note previews and individual MIDI export. The selected-part piano roll uses the full width until the Advanced drawer opens. Original ghost artwork and the exact **by TwonOnDaBeat** credit identify the instrument; VST3 and Windows publisher metadata use TwonOnDaBeat.
 
-Desktop automation was stopped when the owner pressed Escape during local-app inspection. Subsequent code, rendering and packaging checks used development tools. A later owner-authorized GitHub publishing session is separate from those local UI checks.
+Auto Beat Scale suggests ½× at 140 BPM and above, 2× below 70 BPM, otherwise 1×. Manual choices override it. At 180 BPM, both 1× and ½× retain **32 quarter-note beats / eight host bars / 10.6667 seconds**. Half-time provides a slower 90 BPM feel without changing host tempo. Editing snap is separate and defaults to **½ beat**. A tempo change does not silently regenerate accepted MIDI.
 
-## Musical variety and recent-pattern avoidance
+## Completed input audits
 
-New Idea makes up to 32 attempts against up to 64 recent pitch/onset fingerprints per role and arrangement. Fingerprints round onsets to 1/12 beat and ignore velocity, sound, gain, note gate and tiny humanization changes, so those small changes do not count as a new underlying idea. The project's recent fingerprints include discarded candidates and are saved/restored with project state. New instances start with fresh seeds, while an explicit seed request can intentionally reproduce an idea.
+The library scan found 10,868 MIDI files, accepted 2,111 unique pitched streams, excluded 649 percussion streams and quarantined 6,586 uncertain streams. The analyzer passed 27 checks and the plugin-profile exporter passed five separate checks, including the chord-voicing-gap profile. All original file hashes matched after analysis; no input MIDI was modified or redistributed. Duplicate and unsupported files are recorded separately.
 
-Checks passed for 24 successive distinct discarded melody candidates and eight further distinct ideas after project restoration. In all six styles, at least 48 of 64 tested seeds produced distinct melody structures; same-seed determinism also passed. This is bounded best effort. It does not guarantee that a phrase is globally unique, that nothing similar exists in other music, or that every constrained regeneration produces different notes. Locks and intentionally preserved motifs remain meaningful constraints.
+The FL reference-scale audit parsed all 37 installed formulas, compared the 2025 and 2026 definitions, passed 17 parser/catalog checks and 444 root-transposition checks, and independently cross-checked eight familiar formulas. All 74 original reference-score hashes matched afterward. The plugin contains numeric scale facts, not copies of the proprietary score files. Some named traditions have multiple variants; these formulas establish compatibility with the audited FL installation.
 
-## Installer release preparation
+## Validation boundaries
 
-The product remains VST3 only. A separate EXE packages the verified plugin as an offline Windows installer, with an uninstaller and the required notices. Its name is **MIDIComposer-VST3-Setup-0.1.0-dev-Windows.exe**. The installer itself has a separate published checksum and verification record; this embedded report does not attempt to contain the checksum of its own enclosing EXE.
+- Engine tests need to establish correct scale membership, shared harmony, exact seeded replay and locks, all selected timing modes and valid exported MIDI. Processor tests cover actual candidates, editing, project/state restoration and simulated transport, including note on/off consistency and export agreement.
+- UI tests render the actual JUCE component, check exact dropdown strings and geometry, and exercise Print/reprint, preserved A, four populated parts, discard and the Advanced drawer. A rendered component is not an FL Studio screenshot or a full manual usability session.
+- Independent pluginval loading, processing and editor lifecycle checks are separate from FL Studio compatibility. A separate Steinberg validator pass is not claimed unless explicitly recorded.
+- Installation, uninstallation, FL Studio discovery, actual MIDI dragging, multitrack import, live routing and host project reopening require their own outcomes. Standard installation instructions are not proof those operations succeeded here. FL Studio search settings remain unchanged.
+- Assertions do not measure artistic quality. Genre listening review, acoustic realism, broad physical-device testing and per-monitor display-scaling behavior remain separate assessments.
 
-Installer verification uses NSIS compilation plus independent 7-Zip archive integrity/extraction and comparisons of every manifest-listed payload file, including the generated uninstaller. Packaging must leave the verified VST3 bytes unchanged. The installer is not executed during those checks, so installation, uninstallation and FL Studio scanning are not verified outcomes. See the separately updated INSTALLER_VALIDATION.md and installer checksum for the actual release artifact's evidence. Source, installer scripts, artwork and current validation records must be backed up privately before local cleanup.
+Eight original oscillator/envelope preview sounds are synthesized approximations. MIDI contains no preview audio, samples or instrument-specific glide implementation. The receiving instrument determines final tone and articulation.
+
+History and favorites are project-scoped and capped at 24 entries each; undo/redo retains 40 session snapshots. Project data is limited to 8 MB and 4096 notes per part. Mute/Solo affect audition; MIDI export includes enabled muted parts. Overlapping same-pitch events on shared output channels are rejected when ambiguous.
+
+The product is **VST3 only** and unsigned. There is no standalone music app, runtime account, telemetry, remote-control feature or network downloader. Source inspection and bounded input checks do not guarantee security. The owner confirmed use of or eligibility for JUCE Starter; that is self-reported eligibility, not independent license certification.
+
+

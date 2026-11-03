@@ -1,8 +1,9 @@
-# Original artwork
+# Original Ghost Note artwork
 
-Generated with the built-in image_gen tool for this project. No reference image, artist recording, or commercial image asset was used. Embedded source asset: assets/composer-art.png. Original generation kept separately by the tool. This is artwork embedded in the working instrument, not a plugin mockup.
+The current Ghost Note by TwonOnDaBeat interface uses an original transparent manuscript-paper ghost with flowing dark musical ribbons and restrained copper edges. It is embedded from `assets/ghost-note-art.png` and displayed as a compact header emblem, keeping the working interface small.
 
-## Final prompt
+The image was generated specifically for this project with the built-in image generation tool. No reference image, existing character, artist recording, stock illustration or commercial asset was supplied. Its full prompt, creation method, dimensions, alpha check and SHA-256 are recorded in **GHOST-NOTE-ARTWORK.md**.
 
-Use case: stylized-concept. Asset type: original artwork panel embedded in a professional dark MIDI composition instrument, not a UI mockup. Primary request: striking understated abstract sonic sculpture, interwoven graphite-black ribbons forming a suspended crescent and a few precise copper and warm ivory filaments suggesting connected musical phrases. Style: exceptionally refined editorial still life / album-art photograph of a physical sculptural object, intimate soft studio lighting, rich matte paper and brushed copper textures, subtle film grain. Composition: landscape 3:2, one coherent sculptural form centered, generous almost-black charcoal negative space, designed to remain legible when cropped to a shallow wide strip. Palette: near-black ink, subdued aged copper, warm ivory; no neon, no purple-blue gradients, no generic stock waveform, no headphones, no instruments, no floating UI, no text, no letters, no logo, no watermark. Visual identity should feel like an expensive experimental music instrument, tactile and restrained.
+The public-facing name and publisher credit were selected by the owner: **Ghost Note by TwonOnDaBeat**. The generated image contains no lettering; interface typography supplies the exact credit. Artwork provenance does not establish trademark exclusivity. Existing products use similar Ghost Note/Ghostnote names, so the development record makes no name-availability clearance claim.
 
+An earlier abstract ink-and-copper sculpture asset remains in private development history. The new ghost illustration is the current visual identity.

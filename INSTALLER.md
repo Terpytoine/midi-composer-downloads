@@ -1,18 +1,28 @@
-# Download and install the VST3
+# Install Ghost Note by TwonOnDaBeat
 
-Download **MIDIComposer-VST3-Setup-0.1.0-dev-Windows.exe** from the official GitHub release, then run it. This EXE is an installer for the VST3 instrument; it is not a standalone music application.
+Run **Ghost-Note-VST3-Setup-0.2.0-dev-Windows.exe** to install the Windows x64 VST3. This EXE is the installer; the instrument runs inside FL Studio or another VST3 host.
 
-1. Close FL Studio before installing or updating the plugin.
-2. Open the installer and approve the normal Windows administrator prompt. It writes the full plugin bundle into `C:\Program Files\Common Files\VST3\MIDI Composer Dev.vst3`.
-3. Follow the short setup wizard. Open FL Studio, choose **Options → Manage plugins**, and use **Find installed plugins**.
-4. Load **MIDI Composer Dev** as an instrument. Its preview audio uses FL Studio's audio device; Host sync follows the project tempo and transport.
+1. Close any host using an existing Ghost Note instance before installing or updating it.
+2. Open the EXE, approve the normal Windows administrator prompt, and follow the short wizard.
+3. Open FL Studio and choose **Options → Manage plugins → Find installed plugins**.
+4. Look for **Ghost Note by TwonOnDaBeat**. Its manufacturer is **TwonOnDaBeat**. Load it as an instrument.
 
-The installer does not change FL Studio's saved search paths or other settings, start FL Studio, create a standalone music app, download code, or contact a server. The common VST3 folder is a conventional plugin location; actual scanning/loading in this copy of FL Studio remains untested. If that folder is absent from the host's search list, add it yourself or use the manual ZIP instructions.
+The complete bundle is installed at:
 
-At 180 BPM, **½×** gives a 90 BPM musical feel while the MIDI still spans eight host bars / 32 beats / approximately 10.67 seconds. **1×** gives the faster phrasing at the same loop length. Auto suggests a rate from the current tempo, and you can override it. The separate Grid control defaults to **½ beat**.
+`C:\Program Files\Common Files\VST3\Ghost Note by TwonOnDaBeat.vst3`
 
-The installed documentation and uninstaller live in `C:\Program Files\MIDI Composer Dev`. To remove the plugin, close FL Studio and use Windows **Settings → Apps → Installed apps → MIDI Composer Dev VST3 → Uninstall**. The uninstaller removes only this product's manifest-listed files and empty product folders. Your FL Studio projects, custom MIDI files and other plugins are outside its deletion list.
+The installer uses the standard 64-bit VST3 location and leaves FL Studio's saved settings unchanged. FL Studio may need a rescan before the renamed instrument appears. If you previously loaded the temporary MIDI Composer Dev build, select the new Ghost Note entry for new sessions. This installer does not delete the earlier development bundle. See Image-Line's [plugin installation guide](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/basics_externalplugins.htm) for the host's scanning workflow.
 
-This development installer and plugin are **unsigned**. No code-signing certificate was available. Verify the final release's SHA-256 against its published checksum. An unsigned build can trigger a Windows reputation prompt; signing and reputation are separate from the functional checks reported in the release.
+Choose a genre, key and complexity, then press **Print**. Each print contains Melody, Chords, Countermelody and Bass. Drag a part's **Drag MIDI** handle into FL Studio or use its **Export** button. The receiving FL Studio instrument supplies the sound for exported MIDI.
 
-The source remains private. Public release assets should contain the installer, checksum, user documentation and relevant notices, not source/build tools or credentials.
+Host sync follows FL Studio's tempo. At 180 BPM, **½×** provides a 90 BPM musical feel while the default MIDI loop still fills eight host bars / 32 beats / approximately 10.67 seconds. **1×** uses faster phrasing in the same host duration. **Auto** suggests a feel, and you can override it. The separate editing grid defaults to **½ beat**.
+
+The documentation and uninstaller are installed in:
+
+`C:\Program Files\Ghost Note by TwonOnDaBeat`
+
+To remove it, close hosts using Ghost Note and choose **Ghost Note by TwonOnDaBeat VST3** in Windows **Settings → Apps → Installed apps → Uninstall**. The uninstaller removes only manifest-listed product files and empty product folders. Other plugins, FL Studio projects and your exported MIDI are outside its removal list.
+
+The plugin operates offline. No standalone music app, library MIDI files, compiler tools or signing credentials are included in the installer. Only bounded statistical patterns derived from accepted library material are embedded; uncertain and percussion material are excluded from that profile. The source remains private.
+
+This development build is **unsigned**. Verify its SHA-256 against the published checksum. Installer extraction and payload verification are documented separately from actual installation and FL Studio host checks; see the final validation reports for which checks were performed.

@@ -1,22 +1,26 @@
-# MIDI Composer VST3 — v0.1.0-dev
+# Ghost Note by TwonOnDaBeat — v0.2.0-dev
 
-Windows x64 development prerelease. Download and run **MIDIComposer-VST3-Setup-0.1.0-dev-Windows.exe** to install the VST3. No standalone music app is included. The raw VST3 ZIP remains an alternative for manual installation.
+Windows x64 VST3 development prerelease. Run **Ghost-Note-VST3-Setup-0.2.0-dev-Windows.exe** to install the plugin. No standalone music app is included. The manufacturer shown to hosts is **TwonOnDaBeat**.
 
-## Included workflow
+## New in this build
 
-- Connected melody, bass, chords and optional countermelody/chord layer across one harmonic timeline.
-- Eight host bars by default, Auto or manual ½×/1×/2× Beat Scale, and a separate half-beat editing grid. At 180 BPM, ½× and 1× both occupy 32 beats / 10.67 seconds.
-- Candidate A/B, Keep/Discard, exact part locks, independent regeneration and smaller variations.
-- Piano-roll note editing, velocity, scale highlighting, straight/triplet snapping, zoom and scrolling.
-- Editable part and multitrack MIDI export, drag files, project/plugin state, undo/redo, history and favorites.
-- Compact resizable ink-and-copper interface, original artwork and corrected Unicode dropdown labels.
+- A continuous printer workflow: Genre, Key, Scale, Tempo, Complexity and one **Print** action.
+- Four coordinated outputs from the start: Melody, Chords, Countermelody and Bass, each with note previews, drag and MIDI export.
+- A compact 920 × 650 resizable interface, full-width selected-part editor, expandable Advanced drawer and original Ghost Note artwork.
+- 24 genre profiles with different harmony, phrasing, chord articulation and bass behavior.
+- All 12 roots and 38 scale options, based on 37 audited FL Studio reference formulas plus Chromatic.
+- Bounded library-pattern guidance from 2,111 unique accepted pitched streams. Percussion and uncertain material are excluded from the embedded statistics; original MIDI is not distributed.
+- Reprinting keeps committed A intact and archives the previous B in Ideas. Keep/Discard, locks, variations, editing, state recall, explicit seed replay and recent-pattern avoidance remain available.
+- Auto/manual ½×, 1× and 2× feel with eight host bars by default and a separate half-beat editing grid.
 
-New Idea now retries up to 32 times against 64 recent pitch/onset fingerprints per role and arrangement. Recent ideas include discarded candidates and survive project save/restore. Default instances use fresh seeds, and explicit seed requests still reproduce an idea. Fingerprints ignore sound, velocity, gain, gate and tiny timing changes. This is best effort; it does not promise that a melody is globally unique or that a musical phrase has never existed elsewhere. Locks and preserved motifs can intentionally retain material.
+At 180 BPM, ½× and 1× both fill 32 beats / eight host bars / 10.67 seconds. Preview sounds are original synthesized approximations; the receiving FL Studio instrument supplies the final exported-MIDI sound.
 
 ## Verification and limits
 
-The final plugin passed all three suites: 97,770 engine/MIDI, 2,554 processor and 857 UI assertions. Independent pluginval level 5 completed with SUCCESS, including editor lifecycle checks. Musical-variety checks covered 24 distinct successive discarded melody ideas, eight more after project restoration, and at least 48 distinct melody structures across 64 seeds for every style. See the accompanying reports and separate installer verification record for exact artifact checks.
+The final build passed **3,932,337 engine/MIDI**, **3,354 processor** and **1,406 UI** assertions. Complete CTest result: **3/3 suites passed in 8.03 seconds**. Independent VST3 validation: **SUCCESS (strictness 5; GUI lifecycle enabled)**. The final VST3 hash is recorded in BUILD_VALIDATION.md; installer evidence is recorded separately after packaging. Historical v0.1 results do not establish a pass for this build.
 
-The installer and plugin are unsigned. Actual installation/uninstallation and FL Studio host loading, MIDI drag/import and live routing were not performed during packaging. Host search settings remain unchanged. Preview sounds are original synthesized approximations; final instruments are selected in FL Studio. The software operates offline without an AI-model service or account.
+The library analyzer passed 27 checks without changing the 10,868 input MIDI files; the profile exporter passed five additional checks, including the chord-voicing-gap histogram. The FL reference-scale audit passed 17 parser/catalog checks and 444 transposition checks, with all 74 source-score hashes unchanged. Folder-derived genre hints remain unverified. The build does not claim a complete Cymatics MIDI Printer Pro/MAX scale comparison or independently established genre listening accuracy.
 
-Source remains in a private owner-controlled repository. This public repository is for approved downloads and documentation. Publication, repository protections and remote-backup verification are separate release steps; local cleanup follows only after verified backups and the owner's concrete cleanup approval.
+The installer and plugin are unsigned. Actual installation and FL Studio loading, MIDI drag/import, live routing and host recall are separate host checks; see TESTING.md for completed outcomes. FL Studio saved settings remain unchanged. Source stays private. Public release and verified backups precede project-only cleanup.
+
+

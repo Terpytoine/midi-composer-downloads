@@ -1,37 +1,35 @@
-# MIDI Composer VST3
+# Ghost Note by TwonOnDaBeat
 
-An offline MIDI composition instrument for Windows and FL Studio, with connected melody, bass and chords, recoverable candidates, part locks and an editable piano roll.
+A compact, offline music printer for Windows and FL Studio. Choose Genre, Key, Scale, Tempo and Complexity, then press **Print** for connected Melody, Chords, Countermelody and Bass.
 
 ## Download
 
-**[Download Windows VST3 installer](https://github.com/Terpytoine/midi-composer-downloads/releases/download/v0.1.0-dev/MIDIComposer-VST3-Setup-0.1.0-dev-Windows.exe)**
+**[Download the Windows VST3 installer](https://github.com/Terpytoine/midi-composer-downloads/releases/download/v0.2.0-dev/Ghost-Note-VST3-Setup-0.2.0-dev-Windows.exe)**
 
-This is a **development prerelease** for Windows 10/11 x64. The EXE installs the VST3; it is not a standalone music app. The installer and plugin are unsigned.
+The EXE installs the VST3 instrument. This is an **unsigned development prerelease** for Windows 10/11 x64; no standalone music app is included.
 
-1. Close FL Studio and run the downloaded installer. Approve the normal Windows administrator prompt and follow the short wizard.
-2. In FL Studio, open **Options → Manage plugins** and choose **Find installed plugins**.
-3. Load **MIDI Composer Dev** as an instrument, then press Play or Generate. Compare A/B and use Keep or Discard before trying another candidate.
+1. Close hosts using Ghost Note, run the installer and follow the short wizard.
+2. In FL Studio, open **Options → Manage plugins → Find installed plugins**.
+3. Look for **Ghost Note by TwonOnDaBeat**, manufacturer **TwonOnDaBeat**.
 
-The installer uses the standard Common Files VST3 folder and leaves FL Studio's saved search settings unchanged. [Installation details](INSTALLER.md) and [actual verification results](TESTING.md) explain the remaining host checks. A raw VST3 ZIP is available in the same release for manual installation. Check release files against `SHA256SUMS.txt`.
+The installer uses the standard Common Files VST3 folder and leaves FL Studio's saved settings unchanged. A raw VST3 ZIP is also available. See [installation details](INSTALLER.md), [verification results](TESTING.md) and the release checksums.
 
-![Plugin interface](Plugin-Preview.png)
+![Ghost Note interface](Plugin-Preview.png)
 
-## Timing that stays inside your loop
+## Print, audition, keep
 
-At **180 BPM**, choose **1×** for a 180 BPM feel or **½×** for a 90 BPM feel. Both remain **eight host bars / 32 beats / 10.67 seconds**. Auto suggests a beat scale from the host tempo, and manual choices override it. The separate **Grid: ½ beat** control sets editing snap.
+Four coordinated parts arrive together. Compare your saved A idea with the new B print, then Keep or Discard. Print again to explore; the previous print remains in Ideas. Lock favorite parts, vary another part, edit notes, and drag or export each part's MIDI. **Advanced** reveals detailed controls without filling the main workspace.
 
-Melody, bass and main chords start enabled. Optional countermelody and chord layer are behind Add Part. New ideas are candidates, so your current idea remains recoverable; lock parts to preserve their pitches, starts, lengths and velocities. MIDI is editable musical data, while the receiving instrument supplies the sound.
+The resizable window starts at **920 × 650**. There are **24 genre profiles**, all **12 roots**, and **38 scale options**: the 37 audited FL Studio reference formulas plus Chromatic. Strict Scale constrains generated and edited pitches.
 
-New Idea checks recent pitch/onset patterns and makes bounded retries to avoid recent repeats. Discarded candidates are remembered within the project, and recent-pattern history survives save/restore. Fresh instances use new seeds; an explicit seed can replay an idea. Variety is best effort, with no guarantee that similar phrases have never existed elsewhere.
+At **180 BPM**, select **1×** for a 180 BPM feel or **½×** for a 90 BPM feel. Both still fill **eight host bars / 32 beats / 10.67 seconds**. Auto suggests a feel; manual choices override it. **Grid: ½ beat** controls editing snap separately.
 
-## What is public
+The engine combines genre-specific musical rules with bounded aggregate library patterns. Source MIDI files and uncertain material are not distributed. See [how the library informs generation](LIBRARY-METHOD.md). Recent-pattern checks help avoid repeats, while explicit seeds can reproduce an idea. Variety is best effort, not a promise of global uniqueness.
 
-This repository contains official binary downloads, instructions, notices and test reports. The source is maintained privately. You can tweak plugin settings and generated MIDI and save your own projects; public downloads do not grant permission to change the official source or publish official updates. Copies of distributed software can still be modified, and no security guarantee is implied.
+## Source, sound and validation
 
-The engine uses deterministic procedural generation, not an AI model. Preview instruments are original synthesized approximations. [Third-party notices and sound origins](THIRD_PARTY.md) are included with the download and installer.
+Official source remains private and owner-controlled. Users can tweak plugin settings and generated MIDI without receiving permission to change official source or publish official updates. Distributed copies can still be modified; no security guarantee is implied.
 
-## Validation scope
+The engine runs offline and has no AI-model service or account requirement. Eight original synthesized preview sounds provide audition audio; exported MIDI uses the instruments you choose in FL Studio. [Third-party notices and sound origins](THIRD_PARTY.md) accompany the download.
 
-Generation, processor/state and UI checks, independent VST3 lifecycle validation and installer payload verification are reported in [TESTING.md](TESTING.md), [BUILD_VALIDATION.md](BUILD_VALIDATION.md), [UI_VALIDATION.md](UI_VALIDATION.md) and [INSTALLER_VALIDATION.md](INSTALLER_VALIDATION.md). An installer integrity check does not establish successful installation or FL Studio routing. Actual Windows install/uninstall transactions and FL Studio loading, drag-and-drop, multitrack import and live routing remain separate host tests.
-
-The working label is temporary. This prerelease has no final brand or claim of production readiness.
+[TESTING.md](TESTING.md), [BUILD_VALIDATION.md](BUILD_VALIDATION.md), [UI_VALIDATION.md](UI_VALIDATION.md) and the separate installer record distinguish actual checks from remaining host tests. A component render or installer integrity check does not prove FL Studio routing or physical-device behavior.
