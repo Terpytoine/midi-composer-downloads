@@ -1,35 +1,19 @@
-# Ghost Note by TwonOnDaBeat
+# Ghost Note
 
-A compact, offline music printer for Windows and FL Studio. Choose Genre, Key, Scale, Tempo and Complexity, then press **Print** for connected Melody, Chords, Countermelody and Bass.
+An offline Windows x64 **VST3 music printer** by **TwonOnDaBeat**. Choose Genre, Key, Scale, Tempo and Complexity, then **Print** into one editable MIDI sheet.
 
-## Download
+**[Download Ghost Note 1.1.0 for Windows](https://github.com/Terpytoine/midi-composer-downloads/releases/download/v1.1.0/Ghost-Note-VST3-Setup-1.1.0-Windows.exe)**
 
-**[Download the Windows VST3 installer](https://github.com/Terpytoine/midi-composer-downloads/releases/download/v0.2.0-dev/Ghost-Note-VST3-Setup-0.2.0-dev-Windows.exe)**
+The unsigned installer installs **Ghost Note.vst3** for Windows 10/11 x64. This is an **owner-validation prerelease**; the owner will test the updated DAW workflow and complete the listening review.
 
-The EXE installs the VST3 instrument. This is an **unsigned development prerelease** for Windows 10/11 x64; no standalone music app is included.
+1. Close hosts using Ghost Note and run the installer.
+2. In FL Studio open **Options → Manage plugins**, enable **Verify plugins**, then choose **Find installed plugins**. Rescan previously verified plugins if updating an existing entry.
+3. Load **Ghost Note**, manufacturer **TwonOnDaBeat**, then Print, play, edit and export. Save your FL Studio project to preserve the sheet and settings.
 
-1. Close hosts using Ghost Note, run the installer and follow the short wizard.
-2. In FL Studio, open **Options → Manage plugins → Find installed plugins**.
-3. Look for **Ghost Note by TwonOnDaBeat**, manufacturer **TwonOnDaBeat**.
+Version 1.1.0 adds genre-aware scale advice while keeping all **27 models, 12 roots and 38 scales** selectable. Highly Recommended, Compatible, Unrated and Experimental labels provide provisional stylistic guidance. Advice refresh preserves your manual scale and current notes; **Suggest Scale** explicitly selects a setting for the next Print. Strict Scale remains authoritative.
 
-The installer uses the standard Common Files VST3 folder and leaves FL Studio's saved settings unchanged. A raw VST3 ZIP is also available. See [installation details](INSTALLER.md), [verification results](TESTING.md) and the release checksums.
+**Stop** overrides the running host until Play. **Mute MIDI + audio** releases Ghost Note's notes and blocks new output until disabled. Independent imported FL Studio clips remain controlled by their receiving instrument and host pattern.
 
-![Ghost Note interface](Plugin-Preview.png)
+Read the **[complete implementation, musical evidence and validation report](GHOST-NOTE-1.1.0-REPORT.md)** for installation, advice limits, current results and pending owner checks. The [release page](https://github.com/Terpytoine/midi-composer-downloads/releases/tag/v1.1.0) includes the complete VST3 ZIP and exact artifact hashes.
 
-## Print, audition, keep
-
-Four coordinated parts arrive together. Compare your saved A idea with the new B print, then Keep or Discard. Print again to explore; the previous print remains in Ideas. Lock favorite parts, vary another part, edit notes, and drag or export each part's MIDI. **Advanced** reveals detailed controls without filling the main workspace.
-
-The resizable window starts at **920 × 650**. There are **24 genre profiles**, all **12 roots**, and **38 scale options**: the 37 audited FL Studio reference formulas plus Chromatic. Strict Scale constrains generated and edited pitches.
-
-At **180 BPM**, select **1×** for a 180 BPM feel or **½×** for a 90 BPM feel. Both still fill **eight host bars / 32 beats / 10.67 seconds**. Auto suggests a feel; manual choices override it. **Grid: ½ beat** controls editing snap separately.
-
-The engine combines genre-specific musical rules with bounded aggregate library patterns. Source MIDI files and uncertain material are not distributed. See [how the library informs generation](LIBRARY-METHOD.md). Recent-pattern checks help avoid repeats, while explicit seeds can reproduce an idea. Variety is best effort, not a promise of global uniqueness.
-
-## Source, sound and validation
-
-Official source remains private and owner-controlled. Users can tweak plugin settings and generated MIDI without receiving permission to change official source or publish official updates. Distributed copies can still be modified; no security guarantee is implied.
-
-The engine runs offline and has no AI-model service or account requirement. Eight original synthesized preview sounds provide audition audio; exported MIDI uses the instruments you choose in FL Studio. [Third-party notices and sound origins](THIRD_PARTY.md) accompany the download.
-
-[TESTING.md](TESTING.md), [BUILD_VALIDATION.md](BUILD_VALIDATION.md), [UI_VALIDATION.md](UI_VALIDATION.md) and the separate installer record distinguish actual checks from remaining host tests. A component render or installer integrity check does not prove FL Studio routing or physical-device behavior.
+The plugin runs offline. Official plugin source, original reference MIDI and licensed presets remain private. GitHub's automatic source archives contain this public documentation repository.
