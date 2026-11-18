@@ -1,4 +1,6 @@
 # Ghost Note 1.2.0 — current implementation and verification report
+**Installation update — 18 November 2026:** The owner installed 1.2.0. A subsequent read-only check verified all 18 installed payload hashes/sizes, the embedded manifest, exact VST3 hash b55ea5f50767039ef388c891a615446b92bcb6a2d97ae5032b622bb8742b5bf0, product/version/vendor and absence of the approved obsolete bundle. Only the current Ghost Note bundle appeared in the checked standard plugin roots. This does not complete the owner's DAW routing/recall or subjective genre/listening acceptance. The immutable release documents remain build-time snapshots; this dated update records the later installed-byte verification.
+
 
 <a id="gatekeep"></a>
 
